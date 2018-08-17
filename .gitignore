@@ -1,0 +1,14 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+/target/**
+*/target/**
+Будет удалено .idea/
+Будет удалено README.md
+Будет удалено TestStockProducer.iml
+Будет удалено pom.xml
+Будет удалено src/
+Будет удалено target/
