@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class StreamsApplication {
 
-    private final static String TOPIC_MASTER = "stock-topic-master";
+    private final static String TOPIC_MASTER = "stock-topic-masterb6";
     private final static String TOPIC_LAST_DATA = "stock-topic-last-data";
     private final static String TOPIC_LESS = "stock-topic-less";
     private final static String TOPIC_MORE = "stock-topic-more";
