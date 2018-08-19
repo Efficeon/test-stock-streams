@@ -3,7 +3,6 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.*;
 import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.test.ConsumerRecordFactory;
 import org.apache.kafka.streams.test.OutputVerifier;
@@ -33,9 +32,7 @@ public class StreamsApplicationTest {
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG , Serdes.String().getClass());
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG , Serdes.Double().getClass());
 
-        StreamsApplication streamsApp = new StreamsApplication();
-        Topology topology = streamsApp.createTopology();
-        testDriver = new TopologyTestDriver(topology, config);
+        testDriver = new TopologyTestDriver(StreamsApplication.createTopology(), config);
     }
 
     private void pushData(String key, Double value) {
