@@ -28,7 +28,7 @@ class StreamsService {
         AdminClient admin = AdminClient.create(initConfig());
 
         ZkClient zkClient = new ZkClient(ZK_SERVER, 10000, 10000, ZKStringSerializer$.MODULE$);
-        admin.createTopics(Collections.singletonList(new NewTopic(topicName, 10, (short) 10).configs(new HashMap<>())));
+        admin.createTopics(Collections.singletonList(new NewTopic(topicName, 1, (short) 1).configs(new HashMap<>())));
         zkClient.close();
     }
 }
