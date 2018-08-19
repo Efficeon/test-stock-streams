@@ -15,7 +15,7 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertNull;
 
-public class StreamsAppTest {
+public class StreamsApplicationTest {
 
     private StringSerializer stringSerializer = new StringSerializer();
     private DoubleSerializer doubleSerializer = new DoubleSerializer();

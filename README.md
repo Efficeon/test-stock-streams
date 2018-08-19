@@ -8,7 +8,14 @@ git clone https://github.com/Efficeon/test-stock-streams.git
 git clone https://github.com/Efficeon/test-stock-producer.git
 
 ### Creating Topics
-After runing the application, the topics will be created automatically
+After runing the application, the topics will be created automatically.
+
+Next topics will be create:
+
+* "stock-topic-last-data"
+* "stock-topic-less"
+* "stock-topic-more"
+* "stock-topic-averages"
 
 
 ### Tasks (only part 2)

@@ -18,20 +18,20 @@ public class StreamsApplication {
     private final static String TOPIC_AVERAGES_STATISTICAL = "stock-topic-averages";
 
     public static void main(String[] args) {
-        Properties config = PropertiesConfig.initConfig();
-        PropertiesConfig.createTopic(TOPIC_LAST_DATA);
-        PropertiesConfig.createTopic(TOPIC_LESS);
-        PropertiesConfig.createTopic(TOPIC_MORE);
-        PropertiesConfig.createTopic(TOPIC_AVERAGES_STATISTICAL);
+        Properties config = StreamsService.initConfig();
+        StreamsService.createTopic(TOPIC_MASTER);
+        StreamsService.createTopic(TOPIC_LAST_DATA);
+        StreamsService.createTopic(TOPIC_LESS);
+        StreamsService.createTopic(TOPIC_MORE);
+        StreamsService.createTopic(TOPIC_AVERAGES_STATISTICAL);
 
-        StreamsApplication streamsApp  = new StreamsApplication();
-        KafkaStreams streams = new KafkaStreams(streamsApp.createTopology(), config);
+        KafkaStreams streams = new KafkaStreams(createTopology(), config);
         streams.start();
 
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 
-    public Topology createTopology() {
+    public static Topology createTopology() {
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, Double> quotes = builder.stream(TOPIC_MASTER);
 
