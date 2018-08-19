@@ -1,7 +1,5 @@
 package com.testStockStreams;
 
-import kafka.utils.ZKStringSerializer$;
-import org.I0Itec.zkclient.ZkClient;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
@@ -12,7 +10,6 @@ import java.util.*;
 class StreamsService {
 
     private final static String BOOTSTRAP_SERVER = "localhost:9092";
-    private final static String ZK_SERVER = "localhost:2181";
 
     static Properties initConfig() {
         Properties properties = new Properties();
@@ -26,9 +23,6 @@ class StreamsService {
 
     static void createTopic(String topicName) {
         AdminClient admin = AdminClient.create(initConfig());
-
-        ZkClient zkClient = new ZkClient(ZK_SERVER, 10000, 10000, ZKStringSerializer$.MODULE$);
         admin.createTopics(Collections.singletonList(new NewTopic(topicName, 1, (short) 1).configs(new HashMap<>())));
-        zkClient.close();
     }
 }
