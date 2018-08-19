@@ -4,7 +4,6 @@ import kafka.utils.ZKStringSerializer$;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
 
@@ -17,9 +16,8 @@ class StreamsService {
 
     static Properties initConfig() {
         Properties properties = new Properties();
-        properties.put(StreamsConfig.APPLICATION_ID_CONFIG , "KafkaProducer");
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG , "KafkaStreams");
         properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG , BOOTSTRAP_SERVER);
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG , "earliest");
         properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG , Serdes.String().getClass());
         properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG , Serdes.Double().getClass());
 
