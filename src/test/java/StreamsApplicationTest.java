@@ -39,8 +39,8 @@ public class StreamsApplicationTest {
         testDriver.pipeInput(recordFactory.create("stock-topic-master", key, value));
     }
 
-    private ProducerRecord<String, Double> readOutputLastData() {
-        return testDriver.readOutput("stock-topic-last-data", new StringDeserializer(), new DoubleDeserializer());
+    private ProducerRecord<String, Double> readOutputRecentData() {
+        return testDriver.readOutput("stock-topic-recent-data", new StringDeserializer(), new DoubleDeserializer());
     }
 
     private ProducerRecord<String, Double> readOutputLess() {
@@ -56,14 +56,14 @@ public class StreamsApplicationTest {
     }
 
     @Test
-    public void lastDataTest(){
+    public void recentDataTest(){
         pushData("GOOG", 3.0);
-        OutputVerifier.compareKeyValue(readOutputLastData(), "GOOG", 3.0);
-        assertNull(readOutputLastData());
+        OutputVerifier.compareKeyValue(readOutputRecentData(), "GOOG", 3.0);
+        assertNull(readOutputRecentData());
 
         pushData("GOOG", 2.4);
-        OutputVerifier.compareKeyValue(readOutputLastData(), "GOOG", 2.4);
-        assertNull(readOutputLastData());
+        OutputVerifier.compareKeyValue(readOutputRecentData(), "GOOG", 2.4);
+        assertNull(readOutputRecentData());
 
     }
 

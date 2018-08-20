@@ -12,7 +12,7 @@ import java.util.Properties;
 public class StreamsApplication {
 
     private final static String TOPIC_MASTER = "stock-topic-master";
-    private final static String TOPIC_LAST_DATA = "stock-topic-last-data";
+    private final static String TOPIC_RECENT_DATA = "stock-topic-recent-data";
     private final static String TOPIC_LESS = "stock-topic-less";
     private final static String TOPIC_MORE = "stock-topic-more";
     private final static String TOPIC_AVERAGES_STATISTICAL = "stock-topic-averages";
@@ -20,7 +20,7 @@ public class StreamsApplication {
     public static void main(String[] args) {
         Properties config = StreamsService.initConfig();
         StreamsService.createTopic(TOPIC_MASTER);
-        StreamsService.createTopic(TOPIC_LAST_DATA);
+        StreamsService.createTopic(TOPIC_RECENT_DATA);
         StreamsService.createTopic(TOPIC_LESS);
         StreamsService.createTopic(TOPIC_MORE);
         StreamsService.createTopic(TOPIC_AVERAGES_STATISTICAL);
@@ -45,7 +45,7 @@ public class StreamsApplication {
 
         /* tables (1) and (2) need to be additionally merged into two topics in Kafka */
         averages.to(Serdes.String(), Serdes.Double(), TOPIC_AVERAGES_STATISTICAL);
-        quotesSlice.to(Serdes.String(), Serdes.Double(), TOPIC_LAST_DATA);
+        quotesSlice.to(Serdes.String(), Serdes.Double(), TOPIC_RECENT_DATA);
 
         /* split the input stream of quotations into the other two and save them in two different topics,
            one where the value of the quotes> = 2.5, in another <2.5 */
